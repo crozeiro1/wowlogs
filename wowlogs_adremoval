@@ -1,0 +1,41 @@
+// ==UserScript==
+// @name         wowlogs ad remove
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://*.warcraftlogs.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=warcraftlogs.com
+// @grant        none
+// @require     https://code.jquery.com/jquery-3.7.1.min.js
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    insert();
+
+    async function adremoval(){
+           $("span[id^='ap-ea'").remove();
+    }
+    async function run() {
+        adremoval();
+    }
+
+    function loopFunction(delay, f,callback){
+        var loop = function(){
+            f;
+            callback();
+            setTimeout(loop, delay);
+        }; loop();
+    };
+
+    function insert(){
+        loopFunction(100, run(),function(){
+            console.time("run");
+            run();
+            console.timeEnd("run");
+            console.log("checking for AD Stuff to Remove");
+        });
+    }
+
+})();
